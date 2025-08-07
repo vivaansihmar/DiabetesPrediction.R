@@ -1,4 +1,3 @@
-install.packages(c("tidyverse", "caret", "e1071", "xgboost", "randomForest", "pROC", "smotefamily"))
 library(tidyverse)
 library(caret)
 library(e1071)
