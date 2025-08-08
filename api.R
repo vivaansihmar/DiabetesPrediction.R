@@ -1,7 +1,6 @@
-# plumber API file: api.R
 library(plumber)
 
-# Load required model(s)
+
 xgb_model <- readRDS("model/xgboost_model_tuned.rds")
 
 
@@ -29,7 +28,7 @@ function(Pregnancies, Glucose, BloodPressure, SkinThickness, Insulin, BMI, Diabe
     Age = as.numeric(Age)
   )
   
-  # Make model matrix (like during training)
+  
   input_matrix <- model.matrix(~ . -1, data = input_data)
   pred <- predict(xgb_model, input_matrix)
   result <- ifelse(pred > 0.5, 1, 0)
