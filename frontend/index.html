@@ -6,8 +6,8 @@
   <style>
     body {
       font-family: Arial, sans-serif;
-      margin: 40px;
       background: #f9f9f9;
+      margin: 40px;
     }
     h2 {
       color: #2c3e50;
@@ -40,17 +40,11 @@
       width: 100%;
       cursor: pointer;
     }
-    .result {
-      margin-top: 20px;
-      padding: 15px;
-      background: #ecf0f1;
-      border-left: 4px solid #2ecc71;
-    }
   </style>
 </head>
 <body>
-  <h2>🩺 Diabetes Prediction Tool</h2>
-  <form id="predictForm">
+  <h2>🩺 Diabetes Prediction (No JavaScript)</h2>
+  <form action="http://127.0.0.1:8000/predict" method="post">
     <label>Pregnancies</label><input type="number" name="Pregnancies" required />
     <label>Glucose</label><input type="number" name="Glucose" required />
     <label>Blood Pressure</label><input type="number" name="BloodPressure" required />
@@ -61,32 +55,5 @@
     <label>Age</label><input type="number" name="Age" required />
     <button type="submit">Predict</button>
   </form>
-
-  <div class="result" id="result" style="display:none;"></div>
-
-  <script>
-    const form = document.getElementById("predictForm");
-    const resultBox = document.getElementById("result");
-
-    form.addEventListener("submit", async (e) => {
-      e.preventDefault();
-      const formData = new FormData(form);
-      const params = new URLSearchParams(formData).toString();
-
-      const res = await fetch("http://127.0.0.1:8000/predict", {
-        method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: params
-      });
-
-      const data = await res.json();
-      resultBox.innerHTML = `
-        <strong>Random Forest:</strong> ${data.random_forest_prediction}<br/>
-        <strong>XGBoost:</strong> ${data.xgboost_prediction}<br/>
-        <strong>XGBoost Probability:</strong> ${data.xgboost_probability}
-      `;
-      resultBox.style.display = "block";
-    });
-  </script>
 </body>
 </html>

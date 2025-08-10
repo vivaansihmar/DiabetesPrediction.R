@@ -6,7 +6,7 @@ library(randomForest)
 library(pROC)
 library(smotefamily)
 
-data <- read.csv("data/diabetes.csv")
+data <- read.csv("C:/d1p1/data/diabetes.csv")
 data$Outcome <- factor(data$Outcome, levels = c(0, 1))
 
 na_columns <- c("Glucose", "BloodPressure", "SkinThickness", "Insulin", "BMI")
